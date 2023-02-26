@@ -1,0 +1,12 @@
+{
+  "main": {
+    "caption": "Sport Carousel",
+    "loading": "Loading..."
+  },
+  "tab": {
+    "tabCaption": "Tab"
+  },
+  "carousel": {
+    "description": "Matches parameters:\n"
+  }
+}
