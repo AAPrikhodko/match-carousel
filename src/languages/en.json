@@ -1,12 +1,21 @@
 {
   "main": {
     "caption": "Sport Carousel",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "noLogoTeam" : "No Logo for this team"
   },
   "tab": {
     "tabCaption": "Tab"
   },
   "carousel": {
     "description": "Matches parameters:\n"
+  },
+  "card": {
+    "noStatus": "No status",
+    "noRealCategory": "No Category",
+    "noTournament": "No Tournament",
+    "noSeasonType": "No SeasonType",
+    "noTeamName": "No Team Name",
+    "noShortTeamName": "-"
   }
 }

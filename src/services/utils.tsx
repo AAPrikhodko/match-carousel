@@ -1,5 +1,5 @@
 export const getImgScr = (teamId: number) => {
-    return `http://ls.betradar.com/ls/crest/big/${teamId}.png`
+    return `https://img.sportradar.com/ls/crest/big/${teamId}.png`
 }
 
 export const getClasses = (...clases: string[]) => {

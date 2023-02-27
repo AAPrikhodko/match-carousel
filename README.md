@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+Dear User, \
+Welcome to the application **"Sport Carousel"** !
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can find it here:
+- link: https://sport-carousel.netlify.app/
+- code: https://github.com/AAPrikhodko/match-carousel
 
-## Available Scripts
 
-In the project directory, you can run:
+**List files/folders in the src/ folder with short description:**
 
-### `npm start`
+- **App.tsx** - main component. It renders header and two tabs. You can specify tabsParameters. It is an array of tabs. Every tab array has array of carousels where you can put needed sportId and max parameters for every carousel. This approach allows the app to be scalable and add any numbers of tabs or carousels by changing tabsParameters only. 
+- **App.module.scss** - styles for App component
+- **api/matches.ts** - request methods for data with Axios
+- **assets/img** - all needed images for backgrounds
+- **components/Card/Card.tsx** - card component, could be reused any number of times in any carousel. If the team crest doesn't exist, you will see some common logo 
+- **components/Card/Card.module.scss** - styles for card component
+- **components/Card/MatchCarousel.tsx** - MatchCarousel component, could be reused any number of times in any tab
+- **components/Card/MatchCarousel.module.scss** - styles for MatchCarousel component
+- **hooks/useTabData** - custom hook returns necessary data for the carousel with given parameters for each carousel in the tab (sportId max)
+- **languages/en.json** - english version of used words in the project
+- **services/constants.ts** - some constants used in the project 
+- **services/types.ts** - some types/interfaces used in the project
+- **services/utils.ts** - some useful functions used in the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Known Issues**
+- I used adaptive height for the carousel. As the next step I would think about the fixing height
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Notes optimization**
 
-### `npm test`
+I see several options to optimize:
+- For the moment when user arrives to the tab, app requests the server, receives all the information needed for rendering the carousel within this particular tab and prepares the slick-list with all the images. That is very "expensive" and I would suggest do some lazy loading here
+- For the moment every time user changes the tab - app requests the server for updating data. In order to reduce numbers of requests, it is possible to add another custom hook, which could returns all the necessary information for all the tabs. But, I decided not to do it, because it is very important to have up-to-date information when user changes the tab. And because the information could be changed from the time user is on the one tab to the time he changed the tab
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Some notes about the application:**
 
-### `npm run build`
+1. The carousels have 2 parameters:
+    - sportId – Integer – if set display only matches for particular sport.
+      Defaults to none
+    - max – Integer – maximum no. of matches displayed in carousel. Defaults
+      to 10.
+2. UIX behavior:
+    - Carousel cycles through available items automatically with 3 seconds delay
+      per item.
+    - Carousel provides a standard navigation element rendered as dots below
+      the match card items. Clicking a dot navigates to particular card. Clicking a
+      dot also resets the auto-play timer but doesn't stop the auto-play.
+3. In this application you can find 2 tabs
+    - Tab1 displays single MatchCarousel with max number of matches
+      being 10. The carousel with the parameter: max = 10
+    - Tab 2 displays two MatchCarousel components. One for sport 1
+      and one for sport 2.
+4. The application has a responsive layout. It supports screen resolutions up to 375px (iPhone SE)
+5. About stack technology. This app was created based on:
+    - React library
+    - React Query
+    - Type Script
+    - Ant Design library
+    - SCSS preprocessor
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thank you for using "Sport Carousel" app!

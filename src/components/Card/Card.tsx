@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {ICardData} from "../../services/types";
 import {getClasses} from "../../services/utils";
 import styles from "./Card.module.scss";
+import nologo from "../../assets/img/noLogo.png"
+import textInfo from "../../languages/en.json"
 
 interface ICardProps {
     cardData: ICardData
@@ -11,6 +13,17 @@ const Card = (props: ICardProps) => {
 
     const {cardData} = props
     const {realcategory, status, teams, tournament, dt, result} = cardData
+    const [isHomeLogo, setIsHomeLogo] = useState(true)
+    const [isAwayLogo, setIsAwayLogo] = useState(true)
+
+    const handleImageLoad = (event: any, type: "home" | "away") => {
+        const imageHeight = event.target.naturalHeight;
+        const imageWidth = event.target.naturalWidth;
+        if (imageHeight === 1 && imageWidth === 1) {
+         if (type === "home") setIsHomeLogo(false)
+         if (type === "away") setIsAwayLogo(false)
+        }
+    }
 
     return (
         <div className={
@@ -35,8 +48,12 @@ const Card = (props: ICardProps) => {
                 <main className={styles.match}>
                     <div className={styles.matchDescription}>
                         <div className={styles.country}>
-                            {/*<img src={teams.home.imgSrc} className={styles.flag}/>*/}
-                            <div className={getClasses(styles.flag, styles.germanyFlag, styles.bordered)}></div>
+                            <div className={styles.flag}>
+                                <img
+                                    onLoad={(e) => handleImageLoad(e, "home")}
+                                    src={isHomeLogo ? teams.home.imgSrc : nologo} alt={textInfo.main.noLogoTeam}
+                                />
+                            </div>
                             <div className={getClasses(styles.countryCaption, styles.forLargeScreens)}>
                                 {teams.home.displayName}
                             </div>
@@ -68,8 +85,12 @@ const Card = (props: ICardProps) => {
                             }
                         </div>
                         <div className={styles.country}>
-                            {/*<img src={teams.away.imgSrc} className={styles.flag}/>*/}
-                            <div className={getClasses(styles.flag, styles.italyFlag)}></div>
+                            <div className={styles.flag}>
+                                <img
+                                    onLoad={(e) => handleImageLoad(e, "away")}
+                                    src={isAwayLogo ? teams.away.imgSrc : nologo} alt={textInfo.main.noLogoTeam}
+                                />
+                            </div>
                             <div className={getClasses(styles.countryCaption, styles.forLargeScreens)}>
                                 {teams.away.displayName}
                             </div>

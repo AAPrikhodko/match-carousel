@@ -3,6 +3,7 @@ import {QueryKeys} from "../services/constants"
 import {MatchesService} from "../api/matches"
 import {ICarouselParametrs, ICardData} from "../services/types"
 import {getImgScr} from "../services/utils"
+import textData from "../languages/en.json"
 
 export const useTabData = (tabParametrs: ICarouselParametrs[]) => {
     const {isLoading, data: tabData} = useQuery(
@@ -31,24 +32,24 @@ export const useTabData = (tabParametrs: ICarouselParametrs[]) => {
                                                             name: realCategory.name
                                                         },
                                                         tournament: {
-                                                            name: tournament.name,
-                                                            seasontypename: tournament.seasontypename
+                                                            name: tournament.name || textData.card.noTournament,
+                                                            seasontypename: tournament.seasontypename || textData.card.noSeasonType
                                                         },
                                                         status: {
                                                             id: match.status._id,
-                                                            name: match.status.name
+                                                            name: match.status.name || textData.card.noStatus
                                                         },
                                                         teams: {
                                                             home: {
                                                                 id: match.teams.home.uid,
-                                                                shortName: match.teams.home.abbr,
-                                                                displayName: match.teams.home.name,
+                                                                shortName: match.teams.home.abbr || textData.card.noShortTeamName,
+                                                                displayName: match.teams.home.name || textData.card.noTeamName,
                                                                 imgSrc: getImgScr(match.teams.home.uid)
                                                             },
                                                             away: {
                                                                 id: match.teams.away.uid,
-                                                                shortName: match.teams.away.abbr,
-                                                                displayName: match.teams.away.name,
+                                                                shortName: match.teams.away.abbr || textData.card.noShortTeamName,
+                                                                displayName: match.teams.away.name || textData.card.noTeamName,
                                                                 imgSrc: getImgScr(match.teams.away.uid)
                                                             }
                                                         },
