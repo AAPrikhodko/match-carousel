@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, {useState} from "react";
 import {ICardData} from "../../services/types";
 import {getClasses} from "../../services/utils";
 import styles from "./Card.module.scss";
